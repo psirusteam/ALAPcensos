@@ -1,6 +1,7 @@
 ---
 title: "Modelos multinivel con enfoque bayesiano para la estimación de la población"
-subtitle: "CEPAL - Unidad de Estadísticas Sociales"
+author: "Andrés Gutiérrez"
+institute: "CEPAL - Unidad de Estadísticas Sociales"
 format: 
   beamer: 
     colortheme: dove
@@ -834,7 +835,7 @@ Durante el proceso de validación de la información censal se hizo la clasifica
 - dist_poblacion_proyeccion_ajustada_2022  
 - dist_poblacion_ccss_abril_2023           
 - dist_matricula_educacion_primaria_2021   
-- GHS_BUILT_S_E2020_GLOBE_R2023A_5367_CRI (superficie urbanizada en m2.) 
+- GHS_BUILT_S_E2020_GLOBE_R2023A_5367_CRI (superficie urbanizada en m2) 
 - urban_coverfraction                      
 - crops_coverfraction  
 
@@ -843,8 +844,8 @@ Durante el proceso de validación de la información censal se hizo la clasifica
 - asent   (Asentamientos Informales)                                 
 - ppp_CRI_v2  (Densidad de población en modelo Wpop)                             
 - elev (Altitud del área en metros sobre el nivel del mar)                                  
-- indig   (Define si un área esta dentro o fuera de un area indigena)                                 
-- aprot   (Define si un área esta dentro o fuera de un area protegida)
+- indig   (Define si un área esta dentro o fuera de un área indígena)                                 
+- aprot   (Define si un área esta dentro o fuera de un área protegida)
 - ebais_tt  (Tiempo de viaje al EBAI mas próximo en minutos)                                
 - escu_tt    (Tiempo de viaje a la escuela mas próximo en minutos)                              
 - igl_tt     (Tiempo de viaje a la iglesia  as próximo en minutos)                               
@@ -1348,7 +1349,8 @@ PROV_todas <-
 2. Cálculo de Sumas por Fila y Suma Total de Recuentos Predichos para Provincias con Información Faltante
 
 ```{r, eval=FALSE}
-# Calculate row sums and total sum of predicted counts for provinces with missing information
+# Calculate row sums and total sum of predicted counts for provinces 
+# with missing information
 rowSums(prov_sin_informacion[, var_grupo])
 sum(prov_sin_informacion[, var_grupo])
 sum(PROV_todas$pred_conteos)
@@ -1375,7 +1377,8 @@ PROV_censada <-
 PROV_censada[,paste0(var_grupo, "_MEInf")] <- 0
 PROV_censada[,paste0(var_grupo, "_MESup")] <- 0
 
-# Combine data frames of provinces with complete and missing information for each age group
+# Combine data frames of provinces with complete and missing 
+# information for each age group
 censo_vivienda_grupo_edad <-
   bind_rows(PROV_censada, prov_sin_informacion) %>%
   dplyr::select(un_ID,
@@ -1387,10 +1390,12 @@ censo_vivienda_grupo_edad <-
 ## Guardar resultados 
 
 ```{r, eval=FALSE}
-# Inner join the census data with the grouped age data and save the result
+# Inner join the census data with the grouped age data and 
+# save the result
 readRDS("Recursos/04_Multinomial/04_censo_vivienda_personas.rds") %>% 
   inner_join(censo_vivienda_grupo_edad) %>% 
-  saveRDS("Recursos/04_Multinomial/05_censo_vivienda_personas_grupo_edad.rds")
+  saveRDS(
+    "Recursos/04_Multinomial/05_censo_vivienda_personas_grupo_edad.rds")
 ```
 
 
