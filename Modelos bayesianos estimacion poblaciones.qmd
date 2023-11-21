@@ -824,7 +824,31 @@ Durante el proceso de validación de la información censal se hizo la clasifica
 
 - Censado con información n>0
 
+## Listado de variables usadas en el modelo 
 
+- ugm_peligrosidad                         
+- ugm_problema_de_acceso                   
+- ugm_riesgos_amenazas                     
+- ugm_cobertura_telecomunicaciones         
+- dist_permisos_de_construccion_2011_2022  
+- dist_poblacion_proyeccion_ajustada_2022  
+- dist_poblacion_ccss_abril_2023           
+- dist_matricula_educacion_primaria_2021   
+- GHS_BUILT_S_E2020_GLOBE_R2023A_5367_CRI (superficie urbanizada en m2.) 
+- urban_coverfraction                      
+- crops_coverfraction  
+
+## Listado de variables usadas en el modelo 
+
+- asent   (Asentamientos Informales)                                 
+- ppp_CRI_v2  (Densidad de población en modelo Wpop)                             
+- elev (Altitud del área en metros sobre el nivel del mar)                                  
+- indig   (Define si un área esta dentro o fuera de un area indigena)                                 
+- aprot   (Define si un área esta dentro o fuera de un area protegida)
+- ebais_tt  (Tiempo de viaje al EBAI mas próximo en minutos)                                
+- escu_tt    (Tiempo de viaje a la escuela mas próximo en minutos)                              
+- igl_tt     (Tiempo de viaje a la iglesia  as próximo en minutos)                               
+- dist_nl_mean 
 
 
 ## Proceso de estimación de los modelos en  `R` y `STAN`
@@ -1099,3 +1123,351 @@ p1 <- Pred_totPob(censo_vivienda,  agrega = "DIST_ID",
 
 ```
 ![](Recursos/03_Model_for_people/09_Fig_Dist.png){width="350"}
+
+## Modelo multinomial para estimar personas por rango de edad y sexo
+
+
+En el paso final, modelamos la estructura demográfica de las Unidades Geográficas Pequeñas a nivel de provincia. Esta estructura consta de 40 subgrupos basados en la combinación de género y grupos de edad. Para estimar la demografía de hogares no observados, utilizamos la predicción condicional basada en los resultados del paso anterior.
+
+## Modelo multinomial para estimar personas por rango de edad y sexo
+
+Dada la naturaleza del fenómeno en estudio, se considera adecuada una distribución multinomial para el recuento de individuos en los 40 grupos. el modelo utilizado es el siguiente: 
+
+- $G_i$ sigue una distribución Multinomial $Multinomial(p_{G_i})$.
+
+- Las log-odds de $p_{G_i}$ están modeladas por $x_i^T\beta$.
+
+En este contexto, $G_i$ representa el recuento de cada uno de los cuarenta grupos demográficos. $p_{G_i}$ es un vector de tamaño 40 que contiene las probabilidades de que una persona clasificada en cada grupo resida en un hogar.
+
+## Modelo multinomial: Procesamiento en `R`
+
+El código elimina todos los objetos del entorno de R actual, asegurando un punto de partida limpio para las operaciones posteriores.
+
+```{r}
+library(tidyverse)   # Data manipulation and visualization
+library(data.table)  # Fast data manipulation
+library(openxlsx)    # Reading Excel files
+library(magrittr)    # Pipe operator
+library(lme4)        # For fitting linear mixed-effects models
+library(nnet)        # For fitting neural networks
+cat("\f")  # Clears console output
+```
+
+## Modelo multinomial: Lectura de datos en `R`
+
+Para la lectura de los datos hacemos uso del siguiente código
+
+```{r, eval=FALSE}
+censo_vivienda <- 
+  readRDS("Recursos/04_Multinomial/02_censo_vivienda_personas.rds")
+```
+
+Ahora, filtrar los datos del censo para conservar columnas relevantes para el análisis de edad y género.
+
+```{r,eval=FALSE}
+censo_vivienda_age_gender <- censo_vivienda %>% 
+  filter( !greenpoint2 %in% c("Sin informacion pero  n>0", 
+                              "Sin informacion pero n>=0")) %>% 
+  dplyr::select(PROV_ID, HOMBRES_GRUPO1_sum:MUJERES_GRUPO20_sum)
+```
+
+## Modelo multinomial: Preparación de datos:
+
+El código crea un nuevo conjunto de datos, censo_vivienda_edad_sexo, filtrando entradas específicas de censo_vivienda. Se seleccionan columnas relacionadas con grupos de edad y género y provincias. Luego, este conjunto de datos filtrado se agrega a nivel de PROV_ID utilizando la función `summarise_if.`
+    
+
+```{r,eval=FALSE}
+# Summarizing the age and gender data by grouping 
+# it based on province (PROV_ID).
+censo_personas <- censo_vivienda_age_gender %>% 
+  group_by(PROV_ID) %>% 
+  summarise_if(is.numeric, sum)
+```
+
+## Modelo multinomial
+
+Se crea un modelo multinomial utilizando la función `multinom`. Este modelo predice la distribución de grupos de edad y género dentro de los hogares según la provincia (`PROV_ID`). El modelo se almacena en la variable `model`.
+
+```{r, eval=FALSE}
+# Fitting a multinomial model to estimate the 
+# distribution of age and gender within households,
+# using province as the predictor.
+model <- multinom(
+  censo_personas[,-1] %>% as.matrix() ~ censo_personas$PROV_ID)
+
+saveRDS(model, "Recursos/04_Multinomial/Multinomial_model.rds")
+```
+
+## Modelo multinomial: Predicción 
+
+La función `predict` se utiliza para predecir las probabilidades de distribución para el modelo multinomial. Los resultados de la predicción no se muestran aquí, pero se pueden obtener utilizando la función `predict`.
+    
+
+```{r, eval=TRUE}
+model <- readRDS("Recursos/04_Multinomial/Multinomial_model.rds")
+predict(model,type = "probs") %>%  
+  data.frame() %>% select(1:3) %>% tba()
+```
+
+## Construcción de la base censal con predicciones del modelo multinomial
+
+Para la creación de la base se siguen los siguientes pasos: 
+
+1. **Lectura de Datos del Censo**: Lee los datos del censo de viviendas y personas desde un archivo en formato RDS llamado "02_censo_vivienda_personas.rds".
+
+2. **Lectura del Modelo Multinomial Previamente Creado**: Lee el modelo multinomial previamente creado desde un archivo en formato RDS llamado "Multinomial_model.rds".
+
+3. **Cálculo de Probabilidades**: Calcula las probabilidades de pertenecer a cada categoría de resultado utilizando el modelo multinomial. Estas probabilidades se almacenan en un nuevo DataFrame llamado "probabilidad".
+
+## Construcción de la base censal con predicciones del modelo multinomial
+
+4. **Copia de los Datos del Censo**: Crea una copia de los datos del censo de viviendas y personas en un nuevo `data.frame` llamado "censo_vivienda_pred". Esto se hace para trabajar con una copia de los datos originales sin alterar los datos originales.
+
+5. **Cálculo de la Suma de Recuentos Predichos**: Calcula la suma de los recuentos predichos de personas en el censo y la muestra. Este cálculo utiliza la columna "pred_conteos" en el `data.frame` "censo_vivienda_pred".
+
+6. **Identificación de Nombres de Columnas de Grupos de Edad**: Identifica las columnas en el `data.frame` "censo_vivienda_pred" que corresponden a los grupos de edad. Estas columnas se almacenan en la variable "var_grupo" para su posterior uso.
+
+## Código de R para la creación de la base censal. 
+
+```{r, eval=FALSE}
+censo_vivienda <- 
+  readRDS("Recursos/04_Multinomial/02_censo_vivienda_personas.rds") 
+
+# Reading the previously created multinomial model.
+model <- readRDS("Recursos/04_Multinomial/Multinomial_model.rds")
+
+# Calculate probabilities for each outcome category using the model.
+probabilidad <-
+  predict(model, type = "probs") %>% as.data.frame() %>%
+  select_all(~paste0(.,"_prob")) %>% 
+  mutate(PROV_ID = as.character(1:7))
+```
+
+## Código de R para la creación de la base censal. 
+
+```{r, eval=FALSE}
+# Create a copy of the census data to work with.
+censo_vivienda_pred <- censo_vivienda 
+
+# Calculate the sum of predicted counts.
+sum(censo_vivienda_pred$pred_conteos)
+
+# Identify column names corresponding to age groups.
+var_grupo <- grep(x = names(censo_vivienda_pred),
+                  pattern = "*_GRUPO\\d{,2}_sum$",
+                  value = TRUE)
+```
+
+## Resultados para la  Provincia **1**
+
+**Filtrado de Datos del Censo para PROV_ID = 1 y Categorías Específicas de 'greenpoint2'**: Filtra los datos del censo para aquellas observaciones donde el valor de la columna "PROV_ID" es igual a "1" y la columna "greenpoint2" tiene uno de los siguientes valores: "Sin informacion pero n>=0" o "Sin informacion pero n>0". Los resultados de este filtro se almacenan en un nuevo DataFrame llamado "PROV_1".
+
+```{r, eval=FALSE}
+# Filter census data for PROV_ID = 1 and specific
+# greenpoint2 categories.
+PROV_1 <- censo_vivienda_pred %>% filter(
+  PROV_ID == "1" ,
+  greenpoint2 %in% c("Sin informacion pero n>=0",
+                     "Sin informacion pero  n>0")
+)
+```
+
+## Resultados para la  Provincia **1**
+
+**Cálculo de Recuentos Predichos para Grupos de Edad en PROV_1**: Calcula los recuentos predichos para cada grupo de edad en "PROV_1". Utiliza la matriz de recuentos predichos "pred_conteos" en "PROV_1" y multiplica esta matriz por la matriz de probabilidades de pertenecer a cada grupo de edad específico en la provincia 1. Los resultados se almacenan en las columnas correspondientes a grupos de edad.
+
+
+```{r, eval=FALSE}
+# Calculate predicted counts for each age group in PROV_1.
+PROV_1[, var_grupo] <-
+  matrix(PROV_1$pred_conteos, nrow = nrow(PROV_1)) %*%
+  matrix(as.numeric(probabilidad[1, paste0(var_grupo, "_prob")]),
+         ncol = 40)
+```
+
+## Resultados para la  Provincia **1**
+
+**Cálculo del Límite Inferior de Recuentos Predichos para Grupos de Edad en PROV_1**: Calcula el límite inferior de los recuentos predichos para cada grupo de edad en "PROV_1". Utiliza la matriz de límites inferiores "MEInf_pred_conteos" en "PROV_1" y realiza una operación similar a la anterior para obtener los recuentos inferiores para cada grupo de edad.
+
+```{r, eval=FALSE}
+# Calculate lower bound of predicted counts for each 
+# age group in PROV_1.
+PROV_1[, paste0(var_grupo, "_MEInf")] <-
+  matrix(PROV_1$MEInf_pred_conteos, nrow = nrow(PROV_1)) %*%
+  matrix(as.numeric(probabilidad[1, paste0(var_grupo, "_prob")]),
+         ncol = 40)
+```
+
+## Resultados para la  Provincia **1**
+
+**Cálculo del Límite Superior de Recuentos Predichos para Grupos de Edad en PROV_1**: Calcula el límite superior de los recuentos predichos para cada grupo de edad en "PROV_1". Utiliza la matriz de límites superiores "MESup_pred_conteos" en "PROV_1" y realiza una operación similar a la anterior para obtener los recuentos superiores para cada grupo de edad.
+
+
+```{r, eval=FALSE}
+# Calculate upper bound of predicted counts for 
+# each age group in PROV_1.
+PROV_1[, paste0(var_grupo, "_MESup")] <-
+  matrix(PROV_1$MESup_pred_conteos, nrow = nrow(PROV_1)) %*%
+  matrix(as.numeric(probabilidad[1, paste0(var_grupo, "_prob")]),
+         ncol = 40)
+```
+
+**Ten en cuenta que el código está etiquetado se repite para cada una delas provincias.**
+
+## Consolidando la base con las proviancias 
+
+Combinar los resultados de las provincias con información faltante.
+
+```{r, eval=FALSE}
+prov_sin_informacion <-
+  list(
+    PROV_1,
+    PROV_2,
+    PROV_3,
+    PROV_4,
+    PROV_5,
+    PROV_6,
+    PROV_7) %>% bind_rows()
+```
+
+
+
+## Validaciones
+
+1. Filtrado y Recopilación de Datos para Todas las Provincias con Información Faltante (Missing Information)
+
+```{r, eval=FALSE}
+# Filter and gather data for all provinces with missing information
+PROV_todas <-
+  censo_vivienda_pred %>% 
+  filter(greenpoint2 %in% c("Sin informacion pero n>=0",
+                            "Sin informacion pero  n>0"))
+```
+
+
+2. Cálculo de Sumas por Fila y Suma Total de Recuentos Predichos para Provincias con Información Faltante
+
+```{r, eval=FALSE}
+# Calculate row sums and total sum of predicted counts for provinces with missing information
+rowSums(prov_sin_informacion[, var_grupo])
+sum(prov_sin_informacion[, var_grupo])
+sum(PROV_todas$pred_conteos)
+```
+
+## Validaciones
+
+3. **Filtrado de Datos para Provincias con Información del Censo Completa (Censada)**: Filtra los datos de censo para todas las provincias donde el valor de la columna "greenpoint2" no corresponde a "Sin informacion pero n>=0" ni "Sin informacion pero n>0". Los resultados se almacenan en un nuevo DataFrame llamado "PROV_censada".
+
+```{r, eval=FALSE}
+# Filter data for provinces with complete census information
+PROV_censada <-
+  censo_vivienda_pred %>% 
+  filter(!greenpoint2 %in% c("Sin informacion pero n>=0",
+                              "Sin informacion pero  n>0"))
+```
+
+## Validaciones
+
+- Inicializar columnas para los límites inferior y superior de los recuentos previstos
+
+```{r, eval=FALSE}
+# in provinces with complete census
+PROV_censada[,paste0(var_grupo, "_MEInf")] <- 0
+PROV_censada[,paste0(var_grupo, "_MESup")] <- 0
+
+# Combine data frames of provinces with complete and missing information for each age group
+censo_vivienda_grupo_edad <-
+  bind_rows(PROV_censada, prov_sin_informacion) %>%
+  dplyr::select(un_ID,
+         var_grupo,
+         paste0(var_grupo, "_MEInf"),
+         paste0(var_grupo, "_MESup"))
+```
+
+## Guardar resultados 
+
+```{r, eval=FALSE}
+# Inner join the census data with the grouped age data and save the result
+readRDS("Recursos/04_Multinomial/04_censo_vivienda_personas.rds") %>% 
+  inner_join(censo_vivienda_grupo_edad) %>% 
+  saveRDS("Recursos/04_Multinomial/05_censo_vivienda_personas_grupo_edad.rds")
+```
+
+
+## Estimaciones Agregadas modelo multinomial. 
+
+Para el proceso se crearon  las siguientes funciones: 
+
+- **plot_piramide_pob**: Genera un gráfico de pirámide de población con barras e intervalos de confianza.
+
+- **piramide_pob**: Calcula y visualiza la pirámide de población a partir de los datos del censo.
+
+```{r}
+source("Recursos/04_Multinomial/01_Agregados.R")
+censo_vivienda <- 
+  readRDS("Recursos/04_Multinomial/05_censo_vivienda_personas_grupo_edad.rds")
+```
+
+## Predicción del total de personas por rango de edad y sexo
+
+```{r, piramide1, eval=FALSE}
+piramide_pob(
+  censo = censo_vivienda,
+  Plot = FALSE,
+  agrega = NULL,
+  filtro = NULL
+) %>% head(15) %>% tba()
+```
+\tiny
+
+```{r, piramide1, eval=TRUE, echo=FALSE}
+```
+## Predicción del total de personas por rango de edad y sexo
+
+```{r, eval=FALSE}
+p1 <- piramide_pob(
+  censo = censo_vivienda,
+  Plot = TRUE,
+  agrega = NULL,
+  filtro = NULL)
+```
+
+## Predicción del total de personas por rango de edad y sexo
+![Resultado nacional](Recursos/04_Multinomial/06_fig_piramide_nacional.png){width="350"}
+
+## Predicción del total de personas por rango de edad y sexo
+
+```{r, eval=FALSE}
+p1 <- piramide_pob(
+  censo = censo_vivienda,
+  Plot = TRUE,
+  agrega = "PROV_ID",
+  filtro = "1"
+)
+```
+
+## Predicción del total de personas por rango de edad y sexo
+![Resultado para la provincia 1 ](Recursos/04_Multinomial/07_fig_piramide_prov1.png){width="350"}
+
+
+## Predicción del total de personas por rango de edad y sexo
+
+```{r, eval=FALSE}
+p1 <- piramide_pob(
+  censo = censo_vivienda,
+  Plot = TRUE,
+  agrega = "CANT_ID",
+  filtro = "101"
+)
+```
+
+## Predicción del total de personas por rango de edad y sexo
+
+![Resultado para la canton 101 ](Recursos/04_Multinomial/08_fig_piramide_canton101.png){width="350"}
+
+
+## ¡Gracias!
+
+::: yellow
+*Email*: [andres.gutierrez\@cepal.org](mailto:andres.gutierrez@cepal.org){.email}
+:::
