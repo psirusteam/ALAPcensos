@@ -292,11 +292,11 @@ Algunos ejemplos:
 
 ## And this is only the beginning 
 
-  1. La División de Estadística de la CEPAL aspira a consolidarse como la unidad líder en la desagregación de estimaciones en la región de América Latina y el Caribe (ALC). 
+1. La División de Estadística de la CEPAL aspira a consolidarse como la unidad líder en la desagregación de estimaciones en la región de América Latina y el Caribe (ALC). 
 
 - Al centrarnos en mejorar la calidad y la solidez de nuestro trabajo estadístico, nos esforzamos por proporcionar información y datos valiosos que puedan informar eficazmente las políticas y los procesos de toma de decisiones.
 
-  2. Reconocemos la importancia de la colaboración y el intercambio de conocimientos, y nuestra División está comprometida a fomentar asociaciones con otros programas, fondos, agencias y partes interesadas de las Naciones Unidas. 
+2. Reconocemos la importancia de la colaboración y el intercambio de conocimientos, y nuestra División está comprometida a fomentar asociaciones con otros programas, fondos, agencias y partes interesadas de las Naciones Unidas. 
   
 - Buscamos activamente oportunidades para cooperar e intercambiar conocimientos con el fin de promover la adopción e implementación de métodos SAE en todos los países de todo el mundo.
 
@@ -426,7 +426,11 @@ $$
 
 ## Limitaciones identificadas en la base. 
 
-![Mas de UGMs](Recursos/01_Census_Filters/Mapas_UGMS.png){width="350"}
+![Mas de UGMs Rural](Recursos/01_Census_Filters/Mapas_UGMS.png){width="350"}
+
+## Limitaciones identificadas en la base. 
+
+![Mas de UGMs Urbano](Recursos/01_Census_Filters/Mapa cobertura vivienda.jpg){width="350"}
 
 ## Filtrado y Refinamiento de Datos del Censo
 
