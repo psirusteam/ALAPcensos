@@ -1,6 +1,6 @@
 ---
 title: "Modelos multinivel con enfoque bayesiano para la estimación de la población"
-author: "Andrés Gutiérrez"
+author: "Andrés Gutiérrez y Stalyn Guerrero"
 institute: "CEPAL - Unidad de Estadísticas Sociales"
 format: 
   beamer: 
