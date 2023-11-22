@@ -270,6 +270,43 @@ Algunos ejemplos:
 
 ![CEPALSTAT](Recursos/00_Introduccion/04c_Fig_CEPALSTAT.png){width="550"}
 
+## Desarrollos en 2023 
+
+  1. En 2023, la CEPAL se unió a la FAO para apoyar al gobierno chileno en las estimaciones de FIES en municipios.
+
+- Las estimaciones de FIES provienen de modelos de tipo Rasch.
+- Enfoques frecuentistas y bayesianos.
+
+  2. En 2023, la CEPAL recibió la visita de la OIT y acordó explorar enfoques novedosos para la estimación de los métodos de EAC de mercado y trabajo en América Latina y el Caribe.
+
+- Tasa de desempleo, tasa de participación, entre otros indicadores.
+- Modelos bayesianos con efectos aleatorios correlacionados.
+    
+## Desarrollos en 2023 
+
+  3. En 2023, la División de Estadística de las Naciones Unidas, la CEPAL y el UNFPA lanzaron la Capacitación Global sobre Métodos SAE donde los investigadores más influyentes del mundo grabaron sesiones de capacitación.
+
+- Dos versiones de la Capacitación Global (autodidacta y guiada).
+- Partha Lahiri, Isabel Molina, Pedro Silva, Mónica Pratesi, entre otros.
+- 10 módulos.
+
+## And this is only the beginning 
+
+  1. La División de Estadística de la CEPAL aspira a consolidarse como la unidad líder en la desagregación de estimaciones en la región de América Latina y el Caribe (ALC). 
+
+- Al centrarnos en mejorar la calidad y la solidez de nuestro trabajo estadístico, nos esforzamos por proporcionar información y datos valiosos que puedan informar eficazmente las políticas y los procesos de toma de decisiones.
+
+  2. Reconocemos la importancia de la colaboración y el intercambio de conocimientos, y nuestra División está comprometida a fomentar asociaciones con otros programas, fondos, agencias y partes interesadas de las Naciones Unidas. 
+  
+- Buscamos activamente oportunidades para cooperar e intercambiar conocimientos con el fin de promover la adopción e implementación de métodos SAE en todos los países de todo el mundo.
+
+## And this is only the beginning 
+
+  3. Nuestro objetivo es hacer que los métodos de integración de datos sean accesibles y aplicables en diferentes contextos.
+  
+- La División de Estadística de la CEPAL busca contribuir al desarrollo de marcos estadísticos integrales y precisos que faciliten el monitoreo y la evaluación de los indicadores socioeconómicos, apoyen la formulación de políticas basadas en evidencia y fomenten el desarrollo sostenible a nivel mundial.
+
+
 # Introducción al pensamiento bayesiano. 
 
 ## Modelos de población con el enfoque de **Tom**
@@ -386,6 +423,10 @@ $$
 $$
 
 # Base de datos  Censo de Costa Rica 
+
+## Limitaciones identificadas en la base. 
+
+![Mas de UGMs](Recursos/01_Census_Filters/Mapas_UGMS.png){width="350"}
 
 ## Filtrado y Refinamiento de Datos del Censo
 
@@ -1608,7 +1649,7 @@ Para el proceso se crearon  las siguientes funciones:
 
 - **piramide_pob**: Calcula y visualiza la pirámide de población a partir de los datos del censo.
 
-```{r}
+```{r, eval= FALSE}
 source("Recursos/04_Multinomial/01_Agregados.R")
 censo_vivienda <- 
   readRDS("Recursos/04_Multinomial/05_censo_vivienda_personas_grupo_edad.rds")
@@ -1617,16 +1658,18 @@ censo_vivienda <-
 ## Predicción del total de personas por rango de edad y sexo
 
 ```{r, piramide1, eval=FALSE}
-piramide_pob(
+p1 <- piramide_pob(
   censo = censo_vivienda,
   Plot = FALSE,
   agrega = NULL,
   filtro = NULL
 ) %>% head(15) %>% tba()
+saveRDS(p1, "Recursos/04_Multinomial/04a_piramide.rds")
 ```
 \tiny
 
-```{r, piramide1, eval=TRUE, echo=FALSE}
+```{r, eval=TRUE, echo=FALSE}
+readRDS("Recursos/04_Multinomial/04a_piramide.rds") %>% head(15) %>% tba()
 ```
 ## Predicción del total de personas por rango de edad y sexo
 
