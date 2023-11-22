@@ -272,19 +272,19 @@ Algunos ejemplos:
 
 ## Desarrollos en 2023 
 
-  1. En 2023, la CEPAL se unió a la FAO para apoyar al gobierno chileno en las estimaciones de FIES en municipios.
+1. En 2023, la CEPAL se unió a la FAO para apoyar al gobierno chileno en las estimaciones de FIES en municipios.
 
 - Las estimaciones de FIES provienen de modelos de tipo Rasch.
 - Enfoques frecuentistas y bayesianos.
 
-  2. En 2023, la CEPAL recibió la visita de la OIT y acordó explorar enfoques novedosos para la estimación de los métodos de EAC de mercado y trabajo en América Latina y el Caribe.
+2. En 2023, la CEPAL recibió la visita de la OIT y acordó explorar enfoques novedosos para la estimación de los métodos de EAC de mercado y trabajo en América Latina y el Caribe.
 
 - Tasa de desempleo, tasa de participación, entre otros indicadores.
 - Modelos bayesianos con efectos aleatorios correlacionados.
     
 ## Desarrollos en 2023 
 
-  3. En 2023, la División de Estadística de las Naciones Unidas, la CEPAL y el UNFPA lanzaron la Capacitación Global sobre Métodos SAE donde los investigadores más influyentes del mundo grabaron sesiones de capacitación.
+3. En 2023, la División de Estadística de las Naciones Unidas, la CEPAL y el UNFPA lanzaron la Capacitación Global sobre Métodos SAE donde los investigadores más influyentes del mundo grabaron sesiones de capacitación.
 
 - Dos versiones de la Capacitación Global (autodidacta y guiada).
 - Partha Lahiri, Isabel Molina, Pedro Silva, Mónica Pratesi, entre otros.
