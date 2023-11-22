@@ -68,6 +68,207 @@ tba <- function(dat, cap = NA) {
 
 ```
 
+# Introducción 
+
+## Por qué SAE
+
+
+- Necesidad de contar con información desagregada
+
+  * Relevante para las políticas públicas
+  * Mandato ODS de “no dejar a nadie atrás”
+
+- Más allá de lo que las encuestas permiten por sí solas
+
+  * Generar cifras para áreas donde la encuesta no alcanza la calidad requerida
+  * Generar cifras para áreas no cubiertas por la encuesta
+  * Reducir el error de estimación de las cifras
+
+
+
+## Ejemplo: Número de DAM1 según calidad de las estimaciones / Example: Number of MAD1 according to quality of estimates
+
+
+:::: {.columns}
+
+::: {.column width="32%"}
+![Tasa de desocupación, 15 y más años](Recursos/00_Introduccion/01a_Fig_DAM.png){width="150"}
+:::
+
+::: {.column width="32%"}
+![Tasa de desocupación femenina, 15 y más años](Recursos/00_Introduccion/01b_Fig_DAM.png){width="150"}
+:::
+
+::: {.column width="32%"}
+![Tasa de desocupación femenina, 25 a 29 años](Recursos/00_Introduccion/01c_Fig_DAM.png){width="150"}
+:::
+
+::::
+
+## Cómo funciona SAE 
+
+**“Área pequeña”**:
+
+- Dominio para el cual no es posible obtener estimaciones directas confiables
+- La subpoblación de interés puede ser un área geográfica o un subgrupo socioeconómico.
+
+**Fuentes auxiliares**:
+
+- Censos, registros administrativos, datos satelitales, otras encuestas, etc., que tengan representatividad al nivel del “área pequeña” deseada.
+
+**Proceso**
+
+- Identificar las variables auxiliares **x** disponibles en la encuesta y en las fuentes auxiliares.
+- Estimar un modelo para predecir la variable de interés **y** con la encuesta ($y = f(x)$).
+- Aplicar los parámetros estimados a la fuente complementaria.
+- Medir el error de estimación y evaluar la confiabilidad de los resultados.
+
+## SAE en CEPAL 
+
+- Inicio: Documento “Desagregación de datos en encuestas de hogares” (2019)
+
+- Programación en R de los métodos SAE: pobreza extrema, pobreza e ingresos
+
+
+:::: {.columns}
+
+::: {.column width="32%"}
+![](Recursos/00_Introduccion/02a_Fig_libro2.png){width="150"}
+:::
+
+::: {.column width="32%"}
+![](Recursos/00_Introduccion/02b_Fig_libro1.png){width="150"}
+:::
+
+::: {.column width="32%"}
+![](Recursos/00_Introduccion/02c_Fig_libro3.png){width="150"}
+:::
+
+::::
+
+## SAE en CEPAL 
+
+- Proyecto DA13 “Innovative approaches for examining inequality through integration of different data sources in Latin America and the Caribbean” (2021-2024)
+
+- Proyecto con UNFPA
+
+- Cursos
+  - Presenciales
+  - eLearning: español + inglés (con UNSD y UNFPA)
+
+- Asistencias técnicas
+- Seminarios nacionales y regionales
+- Publicaciones
+- Estimaciones SAE de CEPAL
+
+## Cursos 
+
+- eLearning en español
+   - 2 (2021), 1 (2022), 1 (2023)
+   
+- eLearning en inglés (con UNSD y UNFPA)
+
+**Características**
+
+  - Materiales de lectura
+  - Videos grabados (50 videos de aproximadamente 10-15 minutos cada uno), organizados en 10 módulos
+  - Materiales de evaluación que incluyen evaluaciones semanales calificadas por computadora, dos proyectos de medio término y un proyecto final
+  - Código en lenguaje R
+  - Dos versiones: auto-guiado y con tutor
+
+## Asistencias técnicas
+Algunos ejemplos:
+
+  +   Ecuador: tasas de desnutrición a nivel cantonal (ODS 2)
+        *   Modelos FH, BHF
+  +   Chile: tasas de pobreza desagregada a nivel comunal (ODS 1)
+        *   Modelo FH
+  +   Colombia: mapa de pobreza municipal (ODS 1)
+        *   Modelo Census Best (Guadarrama)
+  +   Chile: tasas de victimización desagregada a nivel comunal (ODS 5 y 16)
+        *   Modelo FH, EBP
+  +   Perú: indicadores de planificación familiar a nivel provincial (ODS 3)
+        *   Modelo EBP
+  +   Colombia: tasas de acceso a la justicia a nivel municipal (ODS 16)
+        *   Modelo FH
+
+## Seminarios 
+
+**Seminarios y talleres nacionales**
+
+  -   Chile (nov 2022)
+  -   Uruguay (nov 2022)
+  -   Colombia (abr 2023)
+  -   México (nov 2023)
+
+**Seminarios regionales**
+
+  -   Nov 2018: Chile
+  -   Jun 2023: Brasil (con Cetic.br/nic.br)
+
+**Webinars**
+
+  -   Mapas de pobreza mediante SAE (RTC) (abr 2021)
+  -   Mapas de pobreza mediante SAE (con ISWGHS) (jul 2021)
+  -   Taller de expertos (con ISWGHS) (nov 2023)
+
+## Publicaciones
+
+![Publicaciones](Recursos/00_Introduccion/03a_Fig_publicado.png){width="450"}
+
+## Desagregación de indicadores regionales
+
+**Fuentes de información**
+
+  +   Banco de Datos de Encuestas de Hogares (BADEHOG)
+  
+      *   Variables armonizadas para comparabilidad regional de indicadores
+
+  +   Banco de datos censales de CELADE
+
+      *   Procesamiento mediante librería REDATAM para R
+
+  +   Imágenes satelitales
+
+      *   Acceso a Google Earth Engine desde R con librería rgee
+      *   Luces nocturnas, suelo cultivado, suelo urbano, índice de modificación humana, accesibilidad hospitales, etc
+  
+## Desagregación de indicadores regionales
+
+**Procedimiento**
+
+  +   Estandarización y homologación de covariables
+  +   Actualización de conteos de población según marginales de la encuesta de hogares
+  +   Definición de los modelos para los indicadores de interés
+  +   Predicción en áreas pequeñas y estimación del ECM
+
+      *   Inicialmente Bootstrap 
+      *   Actualmente modelo bayesiano
+
+  +   Validación de supuestos del modelo y “benchmarking”
+  +   Generación de mapas
+
+## Áreas en desarrollo 
+
+  +   Modelo SAE multinomial para indicadores de mercado laboral
+  
+      * Estimación conjunta de condición de actividad (ocupado, desocupado, fuera de la fuerza de trabajo)
+      
+  +   Estimación SAE para índice de pobreza multidimensional
+  
+      * Estimación de cada una de las privaciones que componen el IPM, para obtener su aporte marginal
+
+## CEPALSTAT
+
+![CEPALSTAT](Recursos/00_Introduccion/04a_Fig_CEPALSTAT.png){width="550"}
+
+## CEPALSTAT
+
+![CEPALSTAT](Recursos/00_Introduccion/04b_Fig_CEPALSTAT.png){width="550"}
+
+## CEPALSTAT
+
+![CEPALSTAT](Recursos/00_Introduccion/04c_Fig_CEPALSTAT.png){width="550"}
 
 # Introducción al pensamiento bayesiano. 
 
