@@ -86,8 +86,7 @@ tba <- function(dat, cap = NA) {
 
 
 
-## Ejemplo: Número de DAM1 según calidad de las estimaciones / Example: Number of MAD1 according to quality of estimates
-
+## Ejemplo: Número de DAM1 según calidad de las estimaciones 
 
 :::: {.columns}
 
@@ -115,6 +114,8 @@ tba <- function(dat, cap = NA) {
 **Fuentes auxiliares**:
 
 - Censos, registros administrativos, datos satelitales, otras encuestas, etc., que tengan representatividad al nivel del “área pequeña” deseada.
+
+## Cómo funciona SAE 
 
 **Proceso**
 
@@ -177,29 +178,42 @@ tba <- function(dat, cap = NA) {
   - Dos versiones: auto-guiado y con tutor
 
 ## Asistencias técnicas
-Algunos ejemplos:
+
 
   +   Ecuador: tasas de desnutrición a nivel cantonal (ODS 2)
-        *   Modelos FH, BHF
+      
   +   Chile: tasas de pobreza desagregada a nivel comunal (ODS 1)
-        *   Modelo FH
+      
   +   Colombia: mapa de pobreza municipal (ODS 1)
-        *   Modelo Census Best (Guadarrama)
+    
   +   Chile: tasas de victimización desagregada a nivel comunal (ODS 5 y 16)
-        *   Modelo FH, EBP
+      
   +   Perú: indicadores de planificación familiar a nivel provincial (ODS 3)
-        *   Modelo EBP
+       
   +   Colombia: tasas de acceso a la justicia a nivel municipal (ODS 16)
-        *   Modelo FH
+      
+  +   República Dominicana: tasa de informalidad a nivel municipal (ODS 8)
+      
+  +   Guatemala: Proporción de personas mal nutridas (ODS 2)
+      
+  +   FAO LATAM: Proporción de personas en inseguridad alimentaria (ODS 2)
+       
 
 ## Seminarios 
 
 **Seminarios y talleres nacionales**
 
-  -   Chile (nov 2022)
-  -   Uruguay (nov 2022)
+  -   Ecuador (enero 2023)
+  -   Perú (feb 2023)
+  -   República Dominicana (jul 2023)
+  -   Guatemala (oct 2023)
+  -   Chile (jul 2022)
+  -   Uruguay (mar 2022)
   -   Colombia (abr 2023)
   -   México (nov 2023)
+  -   Jamaica (sep 2023)
+  
+## Seminarios 
 
 **Seminarios regionales**
 
@@ -214,7 +228,7 @@ Algunos ejemplos:
 
 ## Publicaciones
 
-![Publicaciones](Recursos/00_Introduccion/03a_Fig_publicado.png){width="450"}
+![Publicaciones](Recursos/00_Introduccion/03a_Fig_publicado.png){width="550"}
 
 ## Desagregación de indicadores regionales
 
@@ -272,7 +286,7 @@ Algunos ejemplos:
 
 ## Desarrollos en 2023 
 
-1. En 2023, la CEPAL se unió a la FAO para apoyar al gobierno chileno en las estimaciones de FIES en municipios.
+1. En 2023, la CEPAL se unió a la FAO para apoyar en las estimaciones de FIES en municipios de países de Latinoamérica.
 
 - Las estimaciones de FIES provienen de modelos de tipo Rasch.
 - Enfoques frecuentistas y bayesianos.
@@ -282,15 +296,8 @@ Algunos ejemplos:
 - Tasa de desempleo, tasa de participación, entre otros indicadores.
 - Modelos bayesianos con efectos aleatorios correlacionados.
     
-## Desarrollos en 2023 
 
-3. En 2023, la División de Estadística de las Naciones Unidas, la CEPAL y el UNFPA lanzaron la Capacitación Global sobre Métodos SAE donde los investigadores más influyentes del mundo grabaron sesiones de capacitación.
-
-- Dos versiones de la Capacitación Global (autodidacta y guiada).
-- Partha Lahiri, Isabel Molina, Pedro Silva, Mónica Pratesi, entre otros.
-- 10 módulos.
-
-## And this is only the beginning 
+## Nuestra visión a futuro 
 
 1. La División de Estadística de la CEPAL aspira a consolidarse como la unidad líder en la desagregación de estimaciones en la región de América Latina y el Caribe (ALC). 
 
@@ -300,137 +307,42 @@ Algunos ejemplos:
   
 - Buscamos activamente oportunidades para cooperar e intercambiar conocimientos con el fin de promover la adopción e implementación de métodos SAE en todos los países de todo el mundo.
 
-## And this is only the beginning 
+## Nuestra visión a futuro 
 
   3. Nuestro objetivo es hacer que los métodos de integración de datos sean accesibles y aplicables en diferentes contextos.
   
 - La División de Estadística de la CEPAL busca contribuir al desarrollo de marcos estadísticos integrales y precisos que faciliten el monitoreo y la evaluación de los indicadores socioeconómicos, apoyen la formulación de políticas basadas en evidencia y fomenten el desarrollo sostenible a nivel mundial.
 
 
-# Introducción al pensamiento bayesiano. 
 
-## Modelos de población con el enfoque de **Tom**
+# Introducción a los modelos de población
 
-Y te levantas un día...
+## Modelo WorldPop 
 
--   Y te sientes un poco raro, y débil. Vas al médico y te hacen exámenes. Uno de ellos te marca positivo para una enfermedad muy rara que solo afecta al 0.1% de la población.
+![](Recursos/00_Introduccion/Map2.png){width="500"}
 
-**No son buenas noticias.**
+## Modelo WorldPop 
 
--   Vas al consultorio del médico y le preguntas qué tan específico es el examen. Te dice que es muy preciso; identifica correctamente al 99% de la gente que tiene la enfermedad.
+![](Recursos/00_Introduccion/Map1.png){width="350"}
 
-## Y conoces a Thomas...
+## Asistencias técnicas en modelación de población 
 
-![](Recursos/00_Intro_bayes/01_Fig_Ton.PNG){width="500"}
-
-
-## ¿cómo funciona?
-
-![](Recursos/00_Intro_bayes/02_Fig_bayes.png){width="500"}
-
-## ¿cómo funciona?
-
-![](Recursos/00_Intro_bayes/03_Fig_bayes2.png){width="500"}
+- Costa Rica 
+- Ecuador 
+- República Dominicana 
+- Jamaica 
+- Barbados 
+- Haití 
 
 
-## Y pides una segunda opinión
-
--   Y esta vez el médico ordena que vuelves a realizarte ese mismo examen... y vuelves a marcar positivo para esa enfermedad.
-
-- **Y vuelves a preguntarte:** _¿cuál es la probabilidad de que tenga esa enfermedad?_
-
-Esta vez, has actualizado tu información sobre $Pr(E)$, pues ya marcaste positivo en un examen
-
-$$
-Pr(E)= 0.09 \ Y \ Pr(-E) = 0.91
-$$
-
-Por lo tanto:
-
-$$
-Pr(E \mid + +) = 0.997 \approx 91\%
-$$
-
-
-## Elementos de la regla de Bayes
-
-En términos de inferencia para $\boldsymbol{\theta}$, es necesario encontrar la distribución de los parámetros condicionada a la observación de los datos. Para este fin, es necesario definir la distribución conjunta de la variable de interés con el vector de parámetros.
-
-$$
-p(\boldsymbol{\theta},\boldsymbol{Y})=p(\boldsymbol{\theta})p(\boldsymbol{Y} \mid \boldsymbol{\theta})
-$$
-
--   La distribución $p(\boldsymbol{\theta})$ se le conoce con el nombre de distribución previa.
-
--   El término $p(\boldsymbol{Y} \mid \boldsymbol{\theta})$ es la distribución de muestreo, verosimilitud o distribución de los datos.
-
--   La distribución del vector de parámetros condicionada a los datos observados está dada por
-
-$$
-p(\boldsymbol{\theta} \mid \boldsymbol{Y})=\frac{p(\boldsymbol{\theta},\boldsymbol{Y})}{p(\boldsymbol{Y})}=\frac{p(\boldsymbol{\theta})p(\boldsymbol{Y} \mid \boldsymbol{\theta})}{p(\boldsymbol{Y})}
-$$
-
-## Regla de Bayes
-
--   El término $p(\boldsymbol{\theta} \mid \boldsymbol{Y})$ se le conoce con el nombre de distribución ***posterior***.  
-
--   El denominador no depende del vector de parámetros y considerando a los datos observados como fijos, corresponde a una constante y puede ser obviada. Luego, 
-
-$$
-    p(\boldsymbol{\theta} \mid \boldsymbol{Y})\propto p(\boldsymbol{Y} \mid \boldsymbol{\theta})p(\boldsymbol{\theta})
-$$
-
-
-
-## Distribución previa informativa para $\theta$
-
-![](Recursos/00_Intro_bayes/04_Fig_bayes_previa.PNG){width="500"}
-
-
-## Distribución previa NO informativa para $\theta$
-![](Recursos/00_Intro_bayes/05_Fig_bayes_previa2.PNG){width="500"}
-
-
-
-## Modelo de área Poisson 
-
-Suponga que $\boldsymbol{Y}=\{Y_1,\ldots,Y_n\}$ es una muestra aleatoria de variables con distribución Poisson con parámetro $\theta$, la función de distribución conjunta o la función de verosimilitud está dada por
-$$
-p(\boldsymbol{Y} \mid \theta) = \prod_{i=1}^n\frac{e^{-\theta}\theta^{y_i}}{y_i!}I_{\{0,1,\ldots\}}(y_i)
-$$
-
-$$
-= \frac{e^{-n\theta}\theta^{\sum_{i=1}^ny_i}}{\prod_{i=1}^ny_i!}I_{\{0,1,\ldots\}^n}(y_1,\ldots,y_n)
-$$
-
-donde $\{0,1\ldots\}^n$ denota el producto cartesiano $n$ veces sobre el conjunto $\{0,1\ldots\}$. 
-
-El parámetro $\theta$ está restringido al espacio $\Theta=(0,\infty)$.  
-
-
-## Distribución previa para $\theta$
-
--   La distribución previa del parámetro $\theta$ dada por
-
-$$
-p(\theta \mid \alpha,\beta)=\frac{\beta^\alpha}{\Gamma(\alpha)}\theta^{\alpha-1} e^{-\beta\theta}I_{(0,\infty)}(\theta).
-$$
-
--   La distribución posterior del parámetro $\theta$ está dada por
-
-$$
-\theta \mid \boldsymbol{Y} \sim Gamma\left(\sum_{i=1}^ny_i+\alpha,n+\beta\right)
-$$
-
-# Base de datos  Censo de Costa Rica 
 
 ## Limitaciones identificadas en la base. 
 
-![Mas de UGMs Rural](Recursos/01_Census_Filters/Mapas_UGMS.png){width="350"}
+![Mas de sector censal  Rural](Recursos/01_Census_Filters/Mapas_UGMS.png){width="350"}
 
 ## Limitaciones identificadas en la base. 
 
-![Mas de UGMs Urbano](Recursos/01_Census_Filters/Mapa cobertura vivienda.jpg){width="350"}
+![Mas de sector censal  Urbano](Recursos/01_Census_Filters/Mapa cobertura vivienda.jpg){width="350"}
 
 ## Filtrado y Refinamiento de Datos del Censo
 
@@ -438,68 +350,8 @@ En el proceso de mejorar y depurar la base de datos del censo, es fundamental es
 
 A continuación veremos el conjunto de filtros realizados para obtener un base de datos con información precisa y valiosa de los datos del censo.
 
-## Lectura de Datos de Viviendas sin Coordenadas.
-
--   Importación de datos de viviendas desde un archivo CSV.
-
-```{r, eval=FALSE}
-Viviendas_sin_coordenadas <-
-  read_csv2("Recursos/02_Census_Filters/Data/Viviendas sin coordenadas.csv")
-```
-
--   Transformación de datos al formato requerido.
-
--   Creación de variables como ID de provincia, cantón y distrito.
-
-```{r, eval = FALSE}
-Viviendas_sin_coordenadas %<>% 
-  transmute(
-    LLAVEV,
-    PROV_ID = str_sub(CODIGO_PCD, 1,1),
-    CANT_ID = str_sub(CODIGO_PCD, 1,3),
-    DIST_ID    = as.character(CODIGO_PCD),
-    UGM_ID = paste0(CODIGO_PCD , ID_UGM), 
-    H01A_TOTAL_PERSONAS = H01A_TOTAL_RESIDENTES_HAB)
-```
 
 
-## Lectura de Datos del Censo Estandarizado.
-
-Leer los datos del censo estandarizado desde un archivo RDS (R Data Serialization) almacenado. De manera similar a los pasos anteriores, ajustamos los códigos del UGM para mantener la consistencia de los datos. 
-
-```{r, eval=FALSE}
-censo1 <- 
-  readRDS(
-    "Recursos/02_Census_Filters/Data/censo_estandarizado.rds") 
-```
-
-## Incorporación de la Base de Edad y Sexo.
-
-En esta sección, incorporamos la base de edad y sexo en el análisis. La base de edad y sexo se lee desde un archivo RDS almacenado. 
-
-```{r, eval=FALSE}
-censo_sexo_edad <-
-  readRDS(
-    "Recursos/02_Census_Filters/Data/Censo con grupos por sexo.rds") 
-```
-
-## Unión Interna para Agregar la Base de Edad y Sexo
-
-- Cálculo de la diferencia en el recuento de filas entre las bases.
-
-- Identificación de hogares censados en papel no incluidos.
-
-- Comparación del número de filas con los datos del censo y viviendas sin coordenadas.
-   
-```{r, eval=FALSE}
-censo1 <- inner_join( censo1, censo_sexo_edad,
-  join_by( un_ID, PROV_ID,  CANT_ID,
-    DIST_ID,  UGM_ID, LLAVEV,  V01_TIPO_VIVIENDA,
-    V02_OCUPACION_VIVIENDA
-  )
-)
-
-```
 
 ## Aplicación del primer filtro 
 
@@ -511,20 +363,6 @@ censo1 <- inner_join( censo1, censo_sexo_edad,
 
 **greenpoint:** La casa está censada en el mapa de puntos.
 
-## Análisis de la distribución de greenpoints
-
-  1. Se calcula la distribución del estado de greenpoint entre los hogares.
-
-  2. Agrupa los datos según el estado de 'greenpoint' y cuenta el número de hogares en cada categoría.
-
-  3. Calcula la distribución porcentual para cada categoría.
-
-
-
-```{r, eval=TRUE, echo=FALSE}
-readRDS("Recursos/01_Census_Filters/greenpoint_distribution.rds") %>% 
-  tba()
-```
 
 ## Características de los hogares según el estado de greenpoint:
 
@@ -571,64 +409,6 @@ censo2 <- censo1 %>% mutate(
 ```
 
 
-## Aplicación del segundo filtro: Criterio WorldPop
-
-Incluimos todos los hogares con la variable WorldPop (WP) que se encuentran dentro de 1 desviación estándar de su valor promedio. Sin embargo, si estos hogares tienen cero residentes en la variable de interés, marcamos esa variable como "No Disponible" (NA).
-
-Las  estadísticas resumen para la variable 'wpop_sum' se muestran en la siguiente tabla.
-
-```{r, echo = FALSE, eval = TRUE}
-readRDS("Recursos/01_Census_Filters/wpop_summary.rds") %>% tba()
-```
-
-Estas estadísticas nos ayudan a establecer los umbrales para el filtro y se guardan en un archivo de resumen.
-
-
-## Cálculo de umbrales inferiores y superiores
-
-Utilizamos las estadísticas resumen para calcular los umbrales inferiores y superiores.
-
-```{r, echo = TRUE, eval=FALSE}
-li <- 96.96515 - 143.1986 * 1  # Umbral inferior
-ls <- 96.96515 + 143.1986 * 1  # Umbral superior
-```
-
-Identificamos y contamos los hogares que cumplen con los criterios del segundo filtro. Nos enfocamos en los hogares con cero residentes ('H01A_TOTAL_PERSONAS') pero que tienen valores de 'wpop_sum' fuera de los umbrales calculados.
-
-## Aplicando los umbrales inferiores y superiores
-Para validar el resultado de aplicar el criterio de WorldPop se realiza la siguiente tabla. 
-
-```{r, echo = TRUE, eval=FALSE}
-filter_2_counts <- censo2 %>% 
-  filter(H01A_TOTAL_PERSONAS == 0, wpop_sum > ls | wpop_sum < li) %>%
-  group_by(V02_OCUPACION_VIVIENDA) %>% summarise(n = n())
-filter_2_counts
-```
-
-
-```{r, echo = FALSE, eval=TRUE}
-readRDS("Recursos/01_Census_Filters/05_filter_2_counts.rds") %>% tba()
-```
-
-## Aplicación del segundo filtro y actualización de columnas
-
-Finalmente, aplicamos el segundo filtro a los hogares y actualizamos las columnas 'greenpoint2' y 'Filtros'.
-
-```{r, echo = TRUE, eval=FALSE}
-censo3 <- censo2 %>% mutate(
-  greenpoint2 = case_when(
-    H01A_TOTAL_PERSONAS == 0 & 
-      (wpop_sum > ls | wpop_sum < li)  ~ "Sin información pero n>=0",
-    TRUE ~ greenpoint2
-  ),
-  Filtros = case_when(
-    H01A_TOTAL_PERSONAS == 0 &
-      (wpop_sum > ls | wpop_sum < li)  ~ "Criterio WorldPop",
-    TRUE ~ NA_character_
-  )
-)
-```
-
 ## Resumen de datos basados en 'greenpoint2'
 
 Resumimos los datos basados en la variable 'greenpoint2' actualizada. Estos datos nos ayudan a comprender el impacto del filtro en la clasificación de los hogares.
@@ -638,102 +418,9 @@ readRDS(file = "Recursos/01_Census_Filters/summary_greenpoint2.rds") %>% tba()
 ```
 
 
-## Resumen de estadísticas basadas en 'greenpoint2
-
-- Calculamos estadísticas adicionales para las categorías de 'greenpoint2'. 
-
-- Estos datos son esenciales para comprender la distribución de residentes en los hogares filtrados.
-
-
-```{r, echo = FALSE, eval = TRUE}
-readRDS("Recursos/01_Census_Filters/summary_greenpoint2_stats.rds") %>% tba()
-```
-
-## Definición del Tercer Filtro
-
-- El tercer filtro aborda los hogares dentro de las UGM que fueron encuestados después de un intervalo mayor a 20 días y, a pesar de estar clasificados como desocupados, existe incertidumbre sobre su estado de ocupación. 
-
-- Para la implementar el filtro se contaba con el archivo 'Desocupadas fuera periodo.xlsx' que recopila información sobre los hogares que estaban desocupados pero fueron visitados fuera del intervalo estándar. 
-
-- Utilizando la información recopilada actualizamos las columnas 'greenpoint2' y 'Filtros' según los criterios especificados.
-
-## Implementando el tercer filtro
-
-```{r, echo = TRUE, eval=FALSE}
-censo4 <- censo3 %>% mutate(
-  greenpoint2 = case_when(
-    UGM_ID %in% upms_reporte$UGM_ID & 
-      H01A_TOTAL_PERSONAS == 0  ~ "Sin informacion pero n>=0",
-    TRUE ~ greenpoint2
-  ),
-  Filtros = case_when(
-    UGM_ID %in% upms_reporte$UGM_ID & 
-      H01A_TOTAL_PERSONAS == 0  ~ "Fuera de periodo (20 días)",
-    TRUE ~ Filtros
-  )
-)
-```
-
-##  Aplicación de filtros adicionales y creación de valores en 'Filtros'
-
-Refinando aún más los datos mediante la aplicación de filtros adicionales. Los valores en 'Filtros' se actualizan en función de diversas condiciones, como el número de residentes, el resultado de la entrevista ('RESUL_ENTREVISTA_VIV') y la ocupación de la vivienda ('V02_OCUPACION_VIVIENDA').
-
-\small
-```{r, echo = TRUE, eval=FALSE}
-
-censo4 %<>% mutate(Filtros = case_when(
-is.na(Filtros) & H01A_TOTAL_PERSONAS > 0 ~ "Número de personas mayor a 0",
-  
-is.na(Filtros) & RESUL_ENTREVISTA_VIV %in% c(1) &
- H01A_TOTAL_PERSONAS == 0 ~ "Entrevista igual a 1 y número de personas igual a 0",
-  
-is.na(Filtros) & RESUL_ENTREVISTA_VIV %in% c(3,4) ~ "Entrevista es 3 o 4",
-  
-is.na(Filtros) & is.na(greenpoint) & is.na(personas) ~ "Sin conteo de personas",
-
-is.na(Filtros) & V02_OCUPACION_VIVIENDA == "8" ~ "Ocupación de la vivienda es 8", 
-
-  TRUE ~ Filtros
-))
-```
-
-
-## Resumen de datos basados en la variable 'greenpoint2'
-
-Este resumen nos ayuda a comprender el impacto del tercer filtro en la clasificación de los hogares.
-
-```{r, echo = FALSE, eval=TRUE}
-readRDS("Recursos/01_Census_Filters/summary_greenpoint2.rds") %>% 
-  tba()
-```
-
-
-## Resumen de datos basados en 'greenpoint2' y 'Filtros'
-
-Generamos un resumen adicional que considera la combinación de las variables 'greenpoint2' y 'Filtros'. Esto proporciona información más detallada sobre cómo el Criterio WorldPop afecta a las categorías existentes.
-
-\scriptsize
-
-```{r, echo = FALSE, eval = TRUE}
-readRDS("Recursos/01_Census_Filters/summary_greenpoint2_filtros.rds") %>% tba()
-```
-
-**En un proceso adicional incorporamos las entrevistas realizadas en papel y se hace la validación de identificadores duplicados** 
-
-## Tabla de resumen finales 
-
-\tiny
-
-```{r, eval=TRUE, echo=FALSE}
-readRDS(file = "Recursos/01_Census_Filters/summary2.rds") %>% 
-  tba()
-```
-
-
-
 ## Proceso de estimación en **STAN**
 
-Sea $Y$ el conteo de personas censadas por UGM del país. Aquí incluimos las viviendas con cero personas.  
+Sea $Y$ el conteo de personas censadas por sector censal  del país. Aquí incluimos las viviendas con cero personas.  
 
 ```{r,echo=TRUE}
 dataPois <- 
@@ -744,161 +431,58 @@ dataPois <-
 tba(dataPois %>% head(8), cap = "Conteno de personas y viviendas" )
 ```
 
-## Histrograma con el conteno de personas
+## Histrograma con el conteo de personas
 
 ![](Recursos/00_Intro_bayes/Poisson/02_Hist_pois.png){width="500"}
-
-
-## Modelo escrito en código `STAN`
-\small
-```
-data {
-  int<lower=0> n;      // Número de áreas geograficas 
-  int<lower=0> y[n];   // Conteos por area
-  real<lower=0> alpha;
-  real<lower=0> beta;
-}
-parameters {
-  real<lower=0> theta;
-}
-model {
-  y ~ poisson(theta);
-  theta ~ gamma(alpha, beta);
-}
-generated quantities {
-    real ypred[n];                    // vector de longitud n
-    for(ii in 1:n){
-    ypred[ii] = poisson_rng(theta);
-    }
-}
-
-```
-
-## Preparando datos para código `STAN`
-
--   Organizando datos para STAN
-
-```{r,eval=FALSE}
-sample_data <- list(n = nrow(dataPois), y = dataPois$tot_personas, 
-                    alpha = 0.001, beta = 0.001)
-```
-
--   Ejecutando el código de `STAN`
-
-```{r, eval=FALSE}
-stan_pois <- "Recursos/00_Intro_bayes/Poisson/03_Poisson.stan"
-model_poisson <-
-  stan(
-    file = stan_pois, data = sample_data,
-    warmup = 500,
-    iter = 1000,
-    verbose = FALSE,   cores = 4
-  )
-saveRDS(model_poisson,
-           "Recursos/00_Intro_bayes/Poisson/model_poisson.rds")
-
-```
-
-## Resultados de la estimación del  parámetro $\theta$
-
-```{r,eval=FALSE}
-model_poisson <- readRDS(
-           "Recursos/00_Intro_bayes/Poisson/model_poisson.rds")
-tabla_posi <- summary(model_poisson,
-                      pars = c("theta"))$summary
-tabla_posi %>% tba()
-saveRDS(tabla_posi, "Recursos/00_Intro_bayes/Poisson/04_tabla_theta.rds")
-```
-\small
-```{r, echo=FALSE}
-tabla_posi <- readRDS("Recursos/00_Intro_bayes/Poisson/04_tabla_theta.rds")
-tabla_posi %>% tba() 
-```
-
-## Convergencias de las cadenas el parámetro $\theta$
-
-```{r,eval=FALSE}
-posterior_theta <- as.array(model_poisson, pars = "theta")
-p1 <- (mcmc_dens_chains(posterior_theta) +
-    mcmc_areas(posterior_theta) ) / mcmc_trace(posterior_theta)
-```
-
-![Cadenas evaluación de las convergencias  de $\theta$](Recursos/00_Intro_bayes/Poisson/04_Pois_theta.png){width="350"}
-
-
-
-## Chequeo predictivo posterior
-
-```{r, eval=FALSE}
-y_pred_B<-as.array(model_poisson,pars ="ypred") %>% 
-  as_draws_matrix()
-
-rowsrandom<-sample(nrow(y_pred_B),300)
-
-y_pred2<-y_pred_B[rowsrandom,]
-
-p1<- ppc_dens_overlay(y =as.numeric(dataPois$tot_personas), y_pred2)
-p1 + xlim(0,300)
-
-```
-
-## Chequeo predictivo posterior
-
-![Chequeo predictivo posterior para el total de personas por UGM](Recursos/00_Intro_bayes/Poisson/05_ppc.png){width="400"}
-
-## Proceso de estimación en **STAN** (total de viviendas)
-
-- Sea $Y$ el conteo de viviendas ocupadas con personas presentes censadas por UGM.  
-
-**Empleando un proceso igual que el caso anterior se realiza la estimación del modelo para la variable $Y$**
-
--   Organizando datos para STAN
-
-```{r,eval=FALSE}
-sample_data <- list(n = nrow(dataPois), y = dataPois$tot_viviendas, 
-                    alpha = 0.001, beta = 0.001)
-```
-
-## Ejecutando el código de `STAN`
-
-```{r, eval=FALSE}
-stan_pois <- "Recursos/00_Intro_bayes/Poisson/03_Poisson.stan"
-model_poisson_vivi <-
-  stan(
-    file = stan_pois, data = sample_data,
-    warmup = 500,
-    iter = 1000,
-    verbose = FALSE,   cores = 4
-  )
-saveRDS(model_poisson_vivi,
-           "Recursos/00_Intro_bayes/Poisson/model_poisson_vivi.rds")
-
-```
-
-
-## Resultados de la estimación del  parámetro $\theta$
-
-\small
-```{r, echo=FALSE}
-tabla_posi <- readRDS("Recursos/00_Intro_bayes/Poisson/06_tabla_theta_vivi.rds")
-tabla_posi %>% tba() 
-```
-
-
-![Evaluación de la convergencias  de $\theta$](Recursos/00_Intro_bayes/Poisson/07_Pois_theta_vivi.png){width="350"}
-
-
-## Chequeo predictivo posterior
-
-![Chequeo predictivo posterior para el total de viviendas por UGM](Recursos/00_Intro_bayes/Poisson/08_ppc_vivi.png){width="400"}
-
 # Estandarización y validación de covariables
+
+## Imagenes satelitales 
+
+![Modificación humana](Recursos/00_Introduccion/Figura3_000_modificacion_humana.png){width="350"}
+
+## Imagenes satelitales 
+
+![Luces nocturnas](Recursos/00_Introduccion/Figura3_001_Luces nocturna satelite.jpg){width="350"}
+
+## Imagenes satelitales 
+
+![Suelo cultivos](Recursos/00_Introduccion/suelo_cultivos.png){width="200"}
+
+## Imagenes satelitales 
+
+![Suelo urbano](Recursos/00_Introduccion/suelo_urbanos.png){width="200"}
+
+## Listado de variables usadas en el modelo 
+
+- sector censal _peligrosidad                         
+- sector censal _problema_de_acceso                   
+- sector censal _riesgos_amenazas                     
+- sector censal _cobertura_telecomunicaciones         
+- dist_permisos_de_construccion_2011_2022  
+- dist_poblacion_proyeccion_ajustada_2022  
+- dist_poblacion_ccss_abril_2023           
+- dist_matricula_educacion_primaria_2021   
+- GHS_BUILT_S_E2020_GLOBE_R2023A_5367_CRI (superficie urbanizada en m2) 
+- urban_coverfraction                      
+- crops_coverfraction  
+
+## Listado de variables usadas en el modelo 
+
+- asent   (Asentamientos Informales)                                 
+- ppp_CRI_v2  (Densidad de población en modelo Wpop)                             
+- elev (Altitud del área en metros sobre el nivel del mar)                                  
+- indig   (Define si un área esta dentro o fuera de un área indígena)                                 
+- aprot   (Define si un área esta dentro o fuera de un área protegida)
+- ebais_tt  (Tiempo de viaje al EBAI mas próximo en minutos)                                
+- escu_tt    (Tiempo de viaje a la escuela mas próximo en minutos)                              
+- igl_tt     (Tiempo de viaje a la iglesia  as próximo en minutos)                               
+- dist_nl_mean 
 
 
 
 ## Estandarización y validación de covariables
 
-  - De manera similar a como se validaron las variables del censo, el conjunto de covariables pasa por un proceso de validación. Esto implica asegurar la uniformidad en la longitud de identificadores como UGM, Cantos, regiones, etc.
+  - De manera similar a como se validaron las variables del censo, el conjunto de covariables pasa por un proceso de validación. Esto implica asegurar la uniformidad en la longitud de identificadores como sector censal , Cantones, regiones, etc.
 
   - Se lleva a cabo una validación para identificar valores faltantes (NAs) en el conjunto de datos.
 
@@ -916,37 +500,37 @@ tabla_posi %>% tba()
    **Numéricas**: Se estandarizan a escala de media cero y desviación estándar 1 
    **Carácter**: La longitud de los caracteres sea igual dentro de la variable. 
 
-## Valores descriptivos de la base de UGM
+## Valores descriptivos de la base de sector censal 
 
 ```{r, echo=FALSE}
 resumen2 <- readRDS("Recursos/02_Input_Validation_Cov/01_resumen_ugm.rds")
 resumen2 %>% filter(tipo == "character")  %>% 
   select(Nombre = Nombre_Columna,
          Num_nas_char:leng_max) %>% 
-  tba(cap = "Valores descriptivos de la base de UGM (Carácter)") 
+  tba(cap = "Valores descriptivos de la base de sector censal  (Carácter)") 
 ```
   
-## Valores descriptivos de la base de UGM
+## Valores descriptivos de la base de sector censal 
 \tiny
 ```{r, echo=FALSE}
 resumen2 %>% filter(tipo != "character")  %>% 
   select(Nombre = Nombre_Columna,
          Num_nas:Valor_Maximo) %>% 
-  tba(cap = "Valores descriptivos de la base de UGM (Numéricas)") 
+  tba(cap = "Valores descriptivos de la base de sector censal  (Numéricas)") 
 ```
 
 # Modelo multinivel para censos   
 
-## Caso de estudio Costa Rica 
+## Caso de estudio 
 
 - Los modelos que se implementaron,  aprovecharon una variedad de fuentes de datos, como el pre-censo, el censo, registros administrativos e información geoespacial. Que fue preparada previamente. 
 
-- La información geoespacial se ajustó según las unidades geoestadísticas mínimas (UGM), que desempeñaron un papel clave como sectores censales y áreas de empadronamiento.
+- La información geoespacial se ajustó según los sectores censales, que desempeñaron un papel clave como sectores censales y áreas de empadronamiento.
 
 - Se implementó un modelo bayesiano similar a los del Proyecto WorldPop de la Universidad de Southampton en Inglaterra para predecir el número de personas en viviendas no visitadas, ocupadas pero con habitantes ausentes o que rechazaron responder al cuestionario censal.
-- Este modelo se basa en la suposición de que el número de personas en una vivienda de una UGM sigue una distribución de Poisson.
+- Este modelo se basa en la suposición de que el número de personas en una vivienda de una sector censal  sigue una distribución de Poisson.
 
-## Caso de estudio Costa Rica 
+## Caso de estudio 
 
 La ecuación básica del modelo es:  
 
@@ -958,14 +542,14 @@ La ecuación básica del modelo es:
 \end{eqnarray*}
 
 
-donde $Y_{ij}$ es el número de personas que habitan en la i-ésima vivienda de la j-ésima UGM, $N_{ij}$ es el número de viviendas en esa UGM (conocido desde el censo y el precenso), $D_j$ es la densidad poblacional promedio en la UGM.
+donde $Y_{ij}$ es el número de personas que habitan en la i-ésima vivienda de la j-ésima sector censal , $N_{ij}$ es el número de viviendas en esa UGM (conocido desde el censo y el precenso), $D_j$ es la densidad poblacional promedio en la UGM.
 
 Note que $D_j$ se relaciona por medio de la función logaritmo con los correspondientes efectos fijos $x^t_{ij}\beta$ y los efectos aleatorios $z^t_{ij}\gamma$
 
 
 ## Obejtivo.
 
-Estimar el total de personas en Costa Rica, es decir, 
+Estimar el total de personas en el país, es decir, 
 
 $$
 Y = \sum_{U}Y_{d}
@@ -1004,7 +588,7 @@ $$
 
 ```
 data {
-  int<lower=1> D; // Número de UGMs 
+  int<lower=1> D; // Número de sector censal  
   int<lower=1> K; // Cantidad de regresores
   int<lower=1> Kz; // Cantidad de efectos aleatorios
   int<lower=0> Y_obs [D]; // conteos de poblacion por UGM 
@@ -1070,33 +654,6 @@ Durante el proceso de validación de la información censal se hizo la clasifica
 *Modelo 2:* Considera las viviendas con personas presentas
 
 - Censado con información n>0
-
-## Listado de variables usadas en el modelo 
-
-- ugm_peligrosidad                         
-- ugm_problema_de_acceso                   
-- ugm_riesgos_amenazas                     
-- ugm_cobertura_telecomunicaciones         
-- dist_permisos_de_construccion_2011_2022  
-- dist_poblacion_proyeccion_ajustada_2022  
-- dist_poblacion_ccss_abril_2023           
-- dist_matricula_educacion_primaria_2021   
-- GHS_BUILT_S_E2020_GLOBE_R2023A_5367_CRI (superficie urbanizada en m2) 
-- urban_coverfraction                      
-- crops_coverfraction  
-
-## Listado de variables usadas en el modelo 
-
-- asent   (Asentamientos Informales)                                 
-- ppp_CRI_v2  (Densidad de población en modelo Wpop)                             
-- elev (Altitud del área en metros sobre el nivel del mar)                                  
-- indig   (Define si un área esta dentro o fuera de un área indígena)                                 
-- aprot   (Define si un área esta dentro o fuera de un área protegida)
-- ebais_tt  (Tiempo de viaje al EBAI mas próximo en minutos)                                
-- escu_tt    (Tiempo de viaje a la escuela mas próximo en minutos)                              
-- igl_tt     (Tiempo de viaje a la iglesia  as próximo en minutos)                               
-- dist_nl_mean 
-
 
 ## Proceso de estimación de los modelos en  `R` y `STAN`
 
@@ -1290,7 +847,7 @@ saveRDS(fit_poisson_todas,
 
 - Después de esperar un tiempo prudente (15 días o más por modelo) se procede a obtener $\hat{y}_{d}=E_{\mathscr{M}}\left(Y_{d}\mid\boldsymbol{X}_{d},\boldsymbol{\beta}\right)$ para cada UGM  para cada modelo. 
 
-- La predicción por UGM se hace siguiendo las siguientes reglas 
+- La predicción por vivienda se hace siguiendo las siguientes reglas 
 
 \begin{eqnarray*}
 \hat{Y}_{d} & = & \begin{cases}
@@ -1315,13 +872,6 @@ Y_{d} & \text{en otro caso}
 - Ahora se presenta la metodología utilizada para obtener estimaciones en varios niveles de agregación, empleando un conjunto de funciones personalizadas diseñadas para este conjunto de datos en particular.
 
 - Estas funciones facilitan el proceso de generar predicciones y visualizaciones, lo que nos permite analizar de manera efectiva las estimaciones de población.
-
-```{r,eval=FALSE}
-source("Recursos/03_Model_for_people/01_Funcion_agregados.R")
-censo_vivienda <- 
-  readRDS("Recursos/03_Model_for_people/05_censo_vivienda_personas_grupo_edad.rds")
-```
-
 
   - **plot_densidad**: Esta función genera un gráfico de la densidad de una distribución normal con la media y la desviación estándar especificadas. Además, resalta un intervalo específico de la distribución con un área sombreada y segmentos en el gráfico.
 
@@ -1370,6 +920,8 @@ p1 <- Pred_totPob(censo_vivienda,  agrega = "DIST_ID",
 
 ```
 ![](Recursos/03_Model_for_people/09_Fig_Dist.png){width="350"}
+
+# Predicción de la estructura poblacional 
 
 ## Modelo multinomial para estimar personas por rango de edad y sexo
 
@@ -1561,7 +1113,7 @@ PROV_1[, paste0(var_grupo, "_MESup")] <-
 
 **Ten en cuenta que el código está etiquetado se repite para cada una delas provincias.**
 
-## Consolidando la base con las proviancias 
+## Consolidando la base con las provincias 
 
 Combinar los resultados de las provincias con información faltante.
 
@@ -1670,7 +1222,8 @@ p1 <- piramide_pob(
 ) %>% head(15) %>% tba()
 saveRDS(p1, "Recursos/04_Multinomial/04a_piramide.rds")
 ```
-\tiny
+
+## Predicción del total de personas por rango de edad y sexo
 
 ```{r, eval=TRUE, echo=FALSE}
 readRDS("Recursos/04_Multinomial/04a_piramide.rds") %>% head(15) %>% tba()
